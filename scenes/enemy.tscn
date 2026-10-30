@@ -11,12 +11,17 @@ shader_parameter/tint = Color(1, 0.34657717, 0.2800086, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_44saq"]
 radius = 64.0
 
-[node name="Enemy" type="Sprite2D" unique_id=2040678755 groups=["Enemy"]]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ra3w"]
+shader = ExtResource("1_md0e3")
+shader_parameter/tint = Color(1, 0.5336117, 0.4686132, 1)
+
+[node name="Enemy" type="Area2D" unique_id=1609485321 groups=["Enemy"]]
 material = SubResource("ShaderMaterial_54ioy")
-texture = ExtResource("2_4ra3w")
 script = ExtResource("3_4ra3w")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=34118602]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=825200618]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=825200618]
 shape = SubResource("CircleShape2D_44saq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=216471785]
+material = SubResource("ShaderMaterial_4ra3w")
+texture = ExtResource("2_4ra3w")
