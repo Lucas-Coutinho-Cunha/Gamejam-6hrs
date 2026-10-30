@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://scenes/player.tscn" id="2_nakos"]
 [ext_resource type="Shader" uid="uid://dlt7iso3hpytb" path="res://shaders/tint.gdshader" id="3_jh32y"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="4_be0no"]
-[ext_resource type="PackedScene" uid="uid://cohiqpndtgam" path="res://scenes/enemy.tscn" id="5_blm8a"]
+[ext_resource type="PackedScene" uid="uid://8gauxekqqq5r" path="res://scenes/enemy.tscn" id="5_blm8a"]
 [ext_resource type="AudioStream" uid="uid://hansvlw5yy6d" path="res://audio/died.wav" id="6_mlgqr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_44saq"]
@@ -37,11 +37,8 @@ texture = ExtResource("4_be0no")
 scale = Vector2(6, 6)
 shape = SubResource("RectangleShape2D_44saq")
 
-[node name="Enemy" parent="." unique_id=2040678755 instance=ExtResource("5_blm8a")]
-position = Vector2(-256, -837)
-
-[node name="Enemy5" parent="." unique_id=125352683 instance=ExtResource("5_blm8a")]
-position = Vector2(106, -1247)
-
 [node name="Died" type="AudioStreamPlayer" parent="." unique_id=1647516784]
 stream = ExtResource("6_mlgqr")
+
+[node name="Enemy" parent="." unique_id=1752385053 instance=ExtResource("5_blm8a")]
+position = Vector2(-204, -904)

@@ -1,27 +1,27 @@
-[gd_scene format=3 uid="uid://cohiqpndtgam"]
+[gd_scene format=3 uid="uid://8gauxekqqq5r"]
 
 [ext_resource type="Shader" uid="uid://dlt7iso3hpytb" path="res://shaders/tint.gdshader" id="1_md0e3"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_4ra3w"]
 [ext_resource type="Script" uid="uid://4qu8mdei5hf1" path="res://scripts/enemy.gd" id="3_4ra3w"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_54ioy"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bghhj"]
 shader = ExtResource("1_md0e3")
-shader_parameter/tint = Color(1, 0.34657717, 0.2800086, 1)
+shader_parameter/tint = Color(1, 0.4524163, 0.38395953, 1)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_44saq"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_bghhj"]
 radius = 64.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ra3w"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_44saq"]
 shader = ExtResource("1_md0e3")
-shader_parameter/tint = Color(1, 0.5336117, 0.4686132, 1)
+shader_parameter/tint = Color(1, 0.21268043, 0.15969583, 1)
 
-[node name="Enemy" type="Area2D" unique_id=1609485321 groups=["Enemy"]]
-material = SubResource("ShaderMaterial_54ioy")
+[node name="Enemy" type="Area2D" unique_id=740663937]
+material = SubResource("ShaderMaterial_bghhj")
 script = ExtResource("3_4ra3w")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=825200618]
-shape = SubResource("CircleShape2D_44saq")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=988537690]
+shape = SubResource("CircleShape2D_bghhj")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=216471785]
-material = SubResource("ShaderMaterial_4ra3w")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1044585622]
+material = SubResource("ShaderMaterial_44saq")
 texture = ExtResource("2_4ra3w")

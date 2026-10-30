@@ -27,7 +27,7 @@ enum State { NORMAL, DASH }
 @export var kills_per_dash: int = 3
 
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var attackbox: Area2D = $AttackBox
+@onready var attack_box: Area2D = $AttackBox
 @onready var attack: AudioStreamPlayer = $Attack
 @onready var jump: AudioStreamPlayer = $Jump
 @onready var kill: AudioStreamPlayer = $Kill
@@ -60,6 +60,7 @@ func _physics_process(delta: float) -> void:
 			_state_dash(delta)
 	
 	_wrap_around()
+	
 
 
 func _state_normal(delta: float, input_x: float) -> void:
@@ -83,13 +84,22 @@ func _state_normal(delta: float, input_x: float) -> void:
 
 
 func _wrap_around() -> void:
-	var width: float = wrap_right - wrap_left
-	if global_position.x < wrap_left:
+	var camera: Camera2D = get_viewport().get_camera_2d()
+	if camera == null:
+		return
+
+	var half_width: float = get_viewport_rect().size.x / camera.zoom.x / 2.0
+	var center_x: float = camera.get_screen_center_position().x
+	var left: float = center_x - half_width
+	var right: float = center_x + half_width
+	var width: float = right - left
+
+	if global_position.x < left:
 		global_position.x += width
-	elif global_position.x > wrap_right:
+	elif global_position.x > right:
 		global_position.x -= width
-	
-	var near_left: bool = global_position.x < wrap_left + width / 2.0
+
+	var near_left: bool = global_position.x < left + width / 2.0
 	ghost.position = sprite.position + Vector2(width if near_left else -width, 0.0)
 	ghost.flip_h = sprite.flip_h
 	ghost.frame = sprite.frame
@@ -101,8 +111,7 @@ func _try_attack() -> void:
 	attack_cooldown_left = attack_cooldown
 	attack.play()
 	
-	var areas: Array[Area2D] = attackbox.get_overlapping_areas()
-	print(areas)
+	var areas: Array[Area2D] = attack_box.get_overlapping_areas()
 	if areas.is_empty():
 		return
 	var enemy: Enemy = areas[0] as Enemy
@@ -112,7 +121,7 @@ func _try_attack() -> void:
 	enemy.die()
 	kill.play()
 	velocity.y = bounce_velocity * -100
-	
+
 	kills += 1
 	if kills >= kills_per_dash:
 		kills = 0

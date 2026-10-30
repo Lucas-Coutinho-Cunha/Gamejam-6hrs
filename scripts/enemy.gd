@@ -5,21 +5,14 @@ class_name Enemy extends Area2D
 @export_enum("Regular", "Spiky", "Armor") var type: int
 @export var is_angel: bool
 
-var player: Player
-var is_alive: bool = true
+var is_dead: bool = false
 
-
-func _process(delta: float) -> void:
-	if not is_alive:
+func _process(_delta: float) -> void:
+	if is_dead:
 		rotation += 0.2
 		scale -= Vector2(0.01, 0.01)
 		if rotation > 20:
 			queue_free()
 
-
-func attack() -> void:
-	pass
-
-
 func die() -> void:
-	is_alive = false
+	is_dead = true

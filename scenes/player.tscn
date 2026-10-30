@@ -10,8 +10,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(128, 128)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
-size = Vector2(192, 128)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuyoq"]
+size = Vector2(196, 196)
 
 [node name="Player" type="CharacterBody2D" unique_id=308075839]
 script = ExtResource("1_3vyb7")
@@ -22,12 +22,6 @@ shape = SubResource("RectangleShape2D_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=866408501]
 texture = ExtResource("2_g2els")
-
-[node name="AttackBox" type="Area2D" parent="." unique_id=510539075]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox" unique_id=360559258]
-position = Vector2(0, 128)
-shape = SubResource("RectangleShape2D_dqkch")
 
 [node name="Attack" type="AudioStreamPlayer" parent="." unique_id=323603500]
 stream = ExtResource("3_tuyoq")
@@ -41,3 +35,9 @@ stream = ExtResource("6_ur7pv")
 [node name="RideOfTheValkyries" type="AudioStreamPlayer" parent="." unique_id=1658368297]
 stream = ExtResource("6_tuyoq")
 volume_db = -6.0
+
+[node name="AttackBox" type="Area2D" parent="." unique_id=710230454]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox" unique_id=865316818]
+position = Vector2(0, 170)
+shape = SubResource("RectangleShape2D_tuyoq")
