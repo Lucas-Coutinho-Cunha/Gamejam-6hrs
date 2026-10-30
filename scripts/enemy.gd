@@ -4,14 +4,20 @@ class_name Enemy extends Area2D
 
 @export_enum("Regular", "Armor", "Spiky", "Clawed", "Slimy") var type: int
 @export var is_angel: bool
-@onready var helmet: Sprite2D = $Helmet
-@onready var spikes: Sprite2D = $Spikes
-@onready var wing_l: Sprite2D = $WingL
-@onready var wing_r: Sprite2D = $WingR
 
+@onready var wing_l: Sprite2D = $Node2D/WingL
+@onready var wing_r: Sprite2D = $Node2D/WingR
+@onready var body: Sprite2D = $Node2D/Body
+@onready var helmet: Sprite2D = $Node2D/Helmet
+@onready var spikes: Sprite2D = $Node2D/Spikes
+@onready var claws: Sprite2D = $Node2D/Claws
+
+
+var globalpos: Vector2
 var is_dead: bool = false
 
 func _ready() -> void:
+	globalpos = global_position
 	match type:
 		0: helmet.visible = false; spikes.visible = false;
 		1: helmet.visible = true; spikes.visible = false;
@@ -20,8 +26,9 @@ func _ready() -> void:
 		4: helmet.visible = false; spikes.visible = false;
 
 func _process(_delta: float) -> void:
-	wing_l.rotate(sin(Time.get_ticks_msec()*0.0001)* 0.5)
-	wing_r.rotate(-sin(Time.get_ticks_msec()*0.0001)* 0.5)
+	position.y += sin(Time.get_ticks_msec() * 0.01)
+	wing_l.rotation = (sin(Time.get_ticks_msec()*0.01)* 0.5)
+	wing_r.rotation = (-sin(Time.get_ticks_msec()*0.01)* 0.5)
 	if is_dead:
 		rotation += 0.2
 		scale -= Vector2(0.01, 0.01)

@@ -27,31 +27,33 @@ script = ExtResource("3_4ra3w")
 position = Vector2(0, -40)
 shape = SubResource("CircleShape2D_bghhj")
 
-[node name="WingL" type="Sprite2D" parent="." unique_id=47695021]
+[node name="Node2D" type="Node2D" parent="." unique_id=723936630]
+
+[node name="WingL" type="Sprite2D" parent="Node2D" unique_id=47695021]
 position = Vector2(-15.999994, -55.999992)
 scale = Vector2(5, 5)
 texture = ExtResource("3_nenq2")
 offset = Vector2(-16, 0)
 
-[node name="WingR" type="Sprite2D" parent="." unique_id=616823498]
+[node name="WingR" type="Sprite2D" parent="Node2D" unique_id=616823498]
 position = Vector2(15.999985, -55.999992)
 scale = Vector2(5, 5)
 texture = ExtResource("4_md484")
 offset = Vector2(16, 0)
 
-[node name="Body" type="Sprite2D" parent="." unique_id=1044585622]
+[node name="Body" type="Sprite2D" parent="Node2D" unique_id=1044585622]
 material = SubResource("ShaderMaterial_44saq")
 scale = Vector2(5, 5)
 texture = ExtResource("3_5uy6h")
 
-[node name="Helmet" type="Sprite2D" parent="." unique_id=960834055]
+[node name="Helmet" type="Sprite2D" parent="Node2D" unique_id=960834055]
 position = Vector2(0, -39.999992)
 scale = Vector2(5, 5)
 texture = ExtResource("6_ipns3")
 
-[node name="Spikes" type="Sprite2D" parent="." unique_id=1507997599]
+[node name="Spikes" type="Sprite2D" parent="Node2D" unique_id=1507997599]
 position = Vector2(0, -87.99999)
 scale = Vector2(5, 5)
 texture = ExtResource("7_8qclf")
 
-[node name="Claws" type="Sprite2D" parent="." unique_id=1116888346]
+[node name="Claws" type="Sprite2D" parent="Node2D" unique_id=1116888346]
