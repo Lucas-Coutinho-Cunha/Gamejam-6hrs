@@ -28,14 +28,16 @@ position = Vector2(0, -40)
 shape = SubResource("CircleShape2D_bghhj")
 
 [node name="WingL" type="Sprite2D" parent="." unique_id=47695021]
-position = Vector2(-95.999985, -55.999992)
+position = Vector2(-15.999994, -55.999992)
 scale = Vector2(5, 5)
 texture = ExtResource("3_nenq2")
+offset = Vector2(-16, 0)
 
 [node name="WingR" type="Sprite2D" parent="." unique_id=616823498]
-position = Vector2(95.999985, -55.999992)
+position = Vector2(15.999985, -55.999992)
 scale = Vector2(5, 5)
 texture = ExtResource("4_md484")
+offset = Vector2(16, 0)
 
 [node name="Body" type="Sprite2D" parent="." unique_id=1044585622]
 material = SubResource("ShaderMaterial_44saq")

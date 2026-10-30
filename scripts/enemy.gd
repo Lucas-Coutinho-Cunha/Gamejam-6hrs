@@ -20,8 +20,8 @@ func _ready() -> void:
 		4: helmet.visible = false; spikes.visible = false;
 
 func _process(_delta: float) -> void:
-	wing_l.rotate(sin(Time.get_ticks_msec() * 0.01))
-	wing_r.rotate(sin(Time.get_ticks_msec() * 0.01))
+	wing_l.rotate(sin(Time.get_ticks_msec()*0.0001)* 0.5)
+	wing_r.rotate(-sin(Time.get_ticks_msec()*0.0001)* 0.5)
 	if is_dead:
 		rotation += 0.2
 		scale -= Vector2(0.01, 0.01)
