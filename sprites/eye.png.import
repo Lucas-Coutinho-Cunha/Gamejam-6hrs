@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqt1xrilkc3tp"
-path="res://.godot/imported/Demon Armor.png-c84ba98ef76c8d3d8d0ee36d548abd27.ctex"
+uid="uid://bugmlsmx7no7b"
+path="res://.godot/imported/eye.png-4fbd4e7fe5346582c791920bfe987cc5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Demon Armor.png"
-dest_files=["res://.godot/imported/Demon Armor.png-c84ba98ef76c8d3d8d0ee36d548abd27.ctex"]
+source_file="res://sprites/eye.png"
+dest_files=["res://.godot/imported/eye.png-4fbd4e7fe5346582c791920bfe987cc5.ctex"]
 
 [params]
 

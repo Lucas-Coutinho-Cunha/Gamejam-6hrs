@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7ay608071d26"
-path="res://.godot/imported/Demon Soft.png-9ec53734e07a35efb8546bcbc30d8306.ctex"
+uid="uid://djwf35d6eaqfu"
+path="res://.godot/imported/horn.png-cb3b363af6b5ea3c9da0ff95b5f29b15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Demon Soft.png"
-dest_files=["res://.godot/imported/Demon Soft.png-9ec53734e07a35efb8546bcbc30d8306.ctex"]
+source_file="res://sprites/horn.png"
+dest_files=["res://.godot/imported/horn.png-cb3b363af6b5ea3c9da0ff95b5f29b15.ctex"]
 
 [params]
 

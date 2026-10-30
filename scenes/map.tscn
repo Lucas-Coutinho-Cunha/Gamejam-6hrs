@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://scenes/player.tscn" id="2_nakos"]
 [ext_resource type="Shader" uid="uid://dlt7iso3hpytb" path="res://shaders/tint.gdshader" id="3_jh32y"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="4_be0no"]
-[ext_resource type="PackedScene" uid="uid://8gauxekqqq5r" path="res://scenes/enemy.tscn" id="5_blm8a"]
 [ext_resource type="AudioStream" uid="uid://hansvlw5yy6d" path="res://audio/died.wav" id="6_mlgqr"]
+[ext_resource type="Shader" uid="uid://cqfasvhn1cp4p" path="res://shaders/background.gdshader" id="8_jh32y"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_44saq"]
 shader = ExtResource("3_jh32y")
@@ -14,18 +14,29 @@ shader_parameter/tint = Color(0.65882355, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44saq"]
 
-[node name="Map" type="Node2D" unique_id=425054828 node_paths=PackedStringArray("player", "camera")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nakos"]
+shader = ExtResource("8_jh32y")
+shader_parameter/hell_top = Color(0.55, 0.04, 0.04, 1)
+shader_parameter/hell_bottom = Color(0.18, 0, 0.02, 1)
+shader_parameter/sky_top = Color(0.78, 0.93, 1, 1)
+shader_parameter/sky_bottom = Color(0.45, 0.75, 0.95, 1)
+shader_parameter/progress = 0.0
+
+[node name="Map" type="Node2D" unique_id=425054828 node_paths=PackedStringArray("player", "camera", "background")]
 script = ExtResource("1_2lpho")
 player = NodePath("Player")
 camera = NodePath("Camera2D")
 max_fall_distance = 800.0
 lose_font = ExtResource("2_jh32y")
+background = NodePath("CanvasLayer/ColorRect")
+map_height = 50000.0
+enemy_spacing = 450.0
 spawn_min_x = -296.0
 spawn_max_x = 296.0
 
 [node name="Player" parent="." unique_id=308075839 instance=ExtResource("2_nakos")]
 position = Vector2(0, -128)
-bounce_velocity = 15.0
+bounce_velocity = 16.0
 wrap_left = -296.0
 wrap_right = 296.0
 
@@ -45,5 +56,14 @@ shape = SubResource("RectangleShape2D_44saq")
 [node name="Died" type="AudioStreamPlayer" parent="." unique_id=1647516784]
 stream = ExtResource("6_mlgqr")
 
-[node name="Enemy" parent="." unique_id=1752385053 instance=ExtResource("5_blm8a")]
-position = Vector2(-204, -904)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=644238328]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=726340589]
+material = SubResource("ShaderMaterial_nakos")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

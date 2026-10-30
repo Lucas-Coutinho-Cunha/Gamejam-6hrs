@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sk63r6f2i18j"
-path="res://.godot/imported/Demon spiky.png-a0275d532ed2362ed2e2298e820265cd.ctex"
+uid="uid://bsktvrls03cbh"
+path="res://.godot/imported/wing R.png-9bdef94c1587ef3a3c83b0644b1722ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Demon spiky.png"
-dest_files=["res://.godot/imported/Demon spiky.png-a0275d532ed2362ed2e2298e820265cd.ctex"]
+source_file="res://sprites/wing R.png"
+dest_files=["res://.godot/imported/wing R.png-9bdef94c1587ef3a3c83b0644b1722ec.ctex"]
 
 [params]
 

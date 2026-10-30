@@ -12,6 +12,7 @@ enum State { NORMAL, DASH }
 
 @export_group("Bounce")
 @export var bounce_velocity: float = 10
+@export var mini_bounce_velocity: float = 1
 
 @export_group("Attack")
 @export var attack_cooldown: float = 0.3
@@ -110,6 +111,8 @@ func _try_attack() -> void:
 		return
 	attack_cooldown_left = attack_cooldown
 	attack.play()
+	if velocity.y < 200:
+		velocity.y = 200
 	
 	var areas: Array[Area2D] = attack_box.get_overlapping_areas()
 	if areas.is_empty():
@@ -117,11 +120,15 @@ func _try_attack() -> void:
 	var enemy: Enemy = areas[0] as Enemy
 	if enemy == null:
 		return
+	if enemy.type == 0:
+		enemy.die()
+		kill.play()
+		velocity.y = bounce_velocity * -100
+	elif enemy.type == 1:
+		enemy.lose_armor()
+		velocity.y = mini_bounce_velocity * -100
 	
-	enemy.die()
-	kill.play()
-	velocity.y = bounce_velocity * -100
-
+	
 	kills += 1
 	if kills >= kills_per_dash:
 		kills = 0

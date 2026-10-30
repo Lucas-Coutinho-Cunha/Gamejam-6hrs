@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5rqv44omutnh"
-path="res://.godot/imported/Main Demon.png-31b8dc55395b3e5f629ff7cfbd87c617.ctex"
+uid="uid://kscfiijuv8gc"
+path="res://.godot/imported/helmet.png-c3a20af46b04c9ae4338756865367354.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Main Demon.png"
-dest_files=["res://.godot/imported/Main Demon.png-31b8dc55395b3e5f629ff7cfbd87c617.ctex"]
+source_file="res://sprites/helmet.png"
+dest_files=["res://.godot/imported/helmet.png-c3a20af46b04c9ae4338756865367354.ctex"]
 
 [params]
 

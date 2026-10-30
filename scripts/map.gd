@@ -12,6 +12,8 @@ signal player_lost
 @export var lose_text: String = "Hell claims you once more..."
 @export var lose_font: Font
 
+@export var background: ColorRect
+
 @export var map_height: float = 20000.0
 @export var enemy_spacing: float = 250.0
 @export var spacing_jitter: float = 60.0
@@ -23,11 +25,13 @@ var enemy_scene: PackedScene = preload("res://scenes/enemy.tscn")
 
 var highest_y: float = 0.0
 var lost: bool = false
+var start_y: float = 0.0
 
 
 func _ready() -> void:
 	highest_y = player.global_position.y
 	_spawn_enemies()
+	start_y = player.global_position.y
 
 
 func _spawn_enemies() -> void:
@@ -48,6 +52,9 @@ func _physics_process(_delta: float) -> void:
 	if lost:
 		return
 	highest_y = minf(highest_y, player.global_position.y)
+	var progress: float = clampf((start_y - highest_y) / map_height, 0.0, 1.0)
+	(background.material as ShaderMaterial).set_shader_parameter("progress", progress)
+	
 	camera.global_position.y = minf(camera.global_position.y, player.global_position.y)
 	if player.global_position.y > highest_y + max_fall_distance:
 		_lose()
