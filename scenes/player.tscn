@@ -1,14 +1,64 @@
 [gd_scene format=3 uid="uid://be8qbmt0fe144"]
 
 [ext_resource type="Script" uid="uid://dymxf0txidqa8" path="res://scripts/player.gd" id="1_3vyb7"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://dnj8je5v621kw" path="res://sprites/player4.png" id="2_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://fyuwb22rx717" path="res://sprites/player5.png" id="3_jej6c"]
 [ext_resource type="AudioStream" uid="uid://dx2vgduklmjbu" path="res://audio/attack.wav" id="3_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://c3861apxpt1af" path="res://sprites/player6.png" id="4_f1ej7"]
+[ext_resource type="Texture2D" uid="uid://hg8gw2jc82q7" path="res://sprites/player7.png" id="5_oprun"]
 [ext_resource type="AudioStream" uid="uid://dhee5q7xr2ofd" path="res://audio/jump.wav" id="5_smehm"]
+[ext_resource type="Texture2D" uid="uid://daf8ktglw1jnv" path="res://sprites/player3.png" id="6_a8ls1"]
 [ext_resource type="AudioStream" uid="uid://cqodr7ubb13mu" path="res://audio/Ride of the Valkyries.mp3" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://b22njy5vvcubf" path="res://audio/kill.wav" id="6_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://0con5ma7f3j0" path="res://sprites/player1.png" id="7_qfm1y"]
+[ext_resource type="Texture2D" uid="uid://ddxuct63ybiav" path="res://sprites/player2.png" id="8_fulsm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_44saq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3v2ag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jej6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f1ej7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_oprun")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_a8ls1")
+}],
+"loop": 0,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_qfm1y")
+}],
+"loop": 0,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_fulsm")
+}],
+"loop": 0,
+"name": &"rising",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nakos"]
 radius = 96.0
@@ -20,8 +70,13 @@ wrap_right = 720.0
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=893380359]
 shape = SubResource("RectangleShape2D_g2els")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=866408501]
-texture = ExtResource("2_g2els")
+[node name="Anim" type="AnimatedSprite2D" parent="." unique_id=1718457993]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_44saq")
+animation = &"attack"
+autoplay = "idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="Attack" type="AudioStreamPlayer" parent="." unique_id=323603500]
 stream = ExtResource("3_tuyoq")
@@ -45,6 +100,7 @@ volume_db = 6.0
 position = Vector2(0, 64)
 shape = SubResource("CircleShape2D_nakos")
 
-[node name="Swipe" type="Polygon2D" parent="AttackBox"]
+[node name="Swipe" type="Polygon2D" parent="AttackBox" unique_id=1091823267]
+visible = false
 color = Color(1, 0.95, 0.8, 0.85)
-polygon = PackedVector2Array(159.7, 58.1, 144.7, 89.2, 123.7, 116.7, 97.5, 139.3, 67.3, 156.1, 34.4, 166.5, 0.0, 170.0, -34.4, 166.5, -67.3, 156.1, -97.5, 139.3, -123.7, 116.7, -144.7, 89.2, -159.7, 58.1, -56.4, 20.5, -51.1, 31.5, -43.6, 41.2, -34.4, 49.1, -23.8, 55.1, -12.1, 58.8, 0.0, 60.0, 12.1, 58.8, 23.8, 55.1, 34.4, 49.1, 43.6, 41.2, 51.1, 31.5, 56.4, 20.5)
+polygon = PackedVector2Array(159.7, 58.1, 144.7, 89.2, 123.7, 116.7, 97.5, 139.3, 67.3, 156.1, 34.4, 166.5, 0, 170, -34.4, 166.5, -67.3, 156.1, -97.5, 139.3, -123.7, 116.7, -144.7, 89.2, -159.7, 58.1, -56.4, 20.5, -51.1, 31.5, -43.6, 41.2, -34.4, 49.1, -23.8, 55.1, -12.1, 58.8, 0, 60, 12.1, 58.8, 23.8, 55.1, 34.4, 49.1, 43.6, 41.2, 51.1, 31.5, 56.4, 20.5)

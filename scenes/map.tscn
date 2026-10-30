@@ -29,7 +29,6 @@ camera = NodePath("Camera2D")
 max_fall_distance = 800.0
 lose_font = ExtResource("2_jh32y")
 background = NodePath("CanvasLayer/ColorRect")
-map_height = 10000.0
 enemy_spacing = 450.0
 spawn_min_x = -296.0
 spawn_max_x = 296.0

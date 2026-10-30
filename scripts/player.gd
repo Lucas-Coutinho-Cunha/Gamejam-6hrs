@@ -54,7 +54,8 @@ var descent_gravity: float:
 @export_range(0.0, 1.0) var dash_end_momentum: float = 0.35
 @export var kills_per_dash: int = 3
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var anim: AnimatedSprite2D = $Anim
+
 @onready var attack_box: Area2D = $AttackBox
 @onready var swipe: Polygon2D = $AttackBox/Swipe
 @onready var attack: AudioStreamPlayer = $Attack
@@ -74,18 +75,25 @@ var attack_dir: Vector2 = Vector2.DOWN
 var attack_time_left: float = 0.0
 var attack_landed: bool = false
 var bounce_lock_left: float = 0.0
-var ghost: Sprite2D
+var ghost: AnimatedSprite2D
 var swipe_tween: Tween
 
 
 func _ready() -> void:
-	ghost = sprite.duplicate() as Sprite2D
+	print(anim)
+	ghost = anim.duplicate() as AnimatedSprite2D
 	add_child(ghost)
 	swipe.modulate.a = 0.0
 
 
 func _physics_process(delta: float) -> void:
-	print(global_position.y)
+	
+	if launched:
+		if velocity.y > 0:
+			anim.play("rising")
+		else:
+			anim.play("falling")
+	
 	attack_cooldown_left = maxf(attack_cooldown_left - delta, 0.0)
 	bounce_lock_left = maxf(bounce_lock_left - delta, 0.0)
 	var input_x: float = Input.get_axis("left", "right")
@@ -121,6 +129,7 @@ func _state_normal(delta: float, input_x: float) -> void:
 		velocity.y = -jump_velocity
 		launched = true
 		valkyries.play()
+		
 		jump.play()
 	
 	velocity.y += (ascent_gravity if velocity.y < 0.0 else descent_gravity) * delta
@@ -144,9 +153,9 @@ func _wrap_around() -> void:
 		global_position.x -= width
 
 	var near_left: bool = global_position.x < left + width / 2.0
-	ghost.position = sprite.position + Vector2(width if near_left else -width, 0.0)
-	ghost.flip_h = sprite.flip_h
-	ghost.frame = sprite.frame
+	ghost.position = anim.position + Vector2(width if near_left else -width, 0.0)
+	ghost.flip_h = anim.flip_h
+	ghost.frame = anim.frame
 
 
 func _start_attack(input_x: float) -> void:
@@ -158,6 +167,8 @@ func _start_attack(input_x: float) -> void:
 	attack_dir = Vector2(signf(input_x), 1.0).normalized()
 	attack_box.rotation = attack_dir.angle() - PI / 2.0
 	attack.play()
+	anim.play("attack")
+	await anim.animation_finished
 	_play_swipe()
 
 
