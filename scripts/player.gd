@@ -51,6 +51,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	print(global_position.y)
 	attack_cooldown_left = maxf(attack_cooldown_left - delta, 0.0)
 	var input_x: float = Input.get_axis("left", "right")
 	
