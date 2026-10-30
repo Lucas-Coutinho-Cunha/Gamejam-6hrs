@@ -11,6 +11,8 @@ signal player_lost
 @export var reload_delay: float = 2.5
 @export var lose_text: String = "Hell claims you once more..."
 @export var lose_font: Font
+@export var win_text: String = "Heaven trembles upon your arrival..."
+
 
 @export var background: ColorRect
 
@@ -58,18 +60,30 @@ func _physics_process(_delta: float) -> void:
 	camera.global_position.y = minf(camera.global_position.y, player.global_position.y)
 	if player.global_position.y > highest_y + max_fall_distance:
 		_lose()
+	elif player.global_position.y <= -map_height:
+		_win()
 
 
 func _lose() -> void:
 	lost = true
 	died.play()
 	player_lost.emit()
-	_show_lose_text()
+	_show_text(lose_text)
 	await get_tree().create_timer(reload_delay).timeout
 	get_tree().reload_current_scene()
 
 
-func _show_lose_text() -> void:
+func _win() -> void:
+	lost = true
+	player.velocity.y -= 5000
+	died.play()
+	player_lost.emit()
+	_show_text(win_text)
+	await get_tree().create_timer(reload_delay).timeout
+	get_tree().reload_current_scene()
+
+
+func _show_text(text: String) -> void:
 	var layer: CanvasLayer = CanvasLayer.new()
 	add_child(layer)
 
@@ -84,7 +98,7 @@ func _show_lose_text() -> void:
 	settings.shadow_offset = Vector2(0.0, 8.0)
 
 	var label: Label = Label.new()
-	label.text = lose_text
+	label.text = text
 	label.label_settings = settings
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
