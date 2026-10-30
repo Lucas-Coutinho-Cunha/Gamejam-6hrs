@@ -36,7 +36,11 @@ spawn_max_x = 296.0
 
 [node name="Player" parent="." unique_id=308075839 instance=ExtResource("2_nakos")]
 position = Vector2(0, -128)
-bounce_velocity = 16.0
+max_speed = 600.0
+friction = 3000.0
+jump_height = 700.0
+ascent_time = 0.7
+descent_time = 0.5
 wrap_left = -296.0
 wrap_right = 296.0
 
