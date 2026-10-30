@@ -20,9 +20,14 @@ player = NodePath("Player")
 camera = NodePath("Camera2D")
 max_fall_distance = 800.0
 lose_font = ExtResource("2_jh32y")
+spawn_min_x = -296.0
+spawn_max_x = 296.0
 
 [node name="Player" parent="." unique_id=308075839 instance=ExtResource("2_nakos")]
 position = Vector2(0, -128)
+bounce_velocity = 15.0
+wrap_left = -296.0
+wrap_right = 296.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2070369066]
 

@@ -12,23 +12,36 @@ signal player_lost
 @export var lose_text: String = "Hell claims you once more..."
 @export var lose_font: Font
 
-@export var map_height: int = 10000
+@export var map_height: float = 20000.0
+@export var enemy_spacing: float = 250.0
+@export var spacing_jitter: float = 60.0
+@export var spawn_min_x: float = 120.0
+@export var spawn_max_x: float = 600.0
+@export var first_enemy_offset: float = 300.0
 
+var enemy_scene: PackedScene = preload("res://scenes/enemy.tscn")
 
 var highest_y: float = 0.0
 var lost: bool = false
 
-var enemy: PackedScene = preload("res://scenes/enemy.tscn")
-var enemy_instance: Node2D
 
 func _ready() -> void:
 	highest_y = player.global_position.y
-	for i: int in range(map_height):
-		if i % 500 == 0:
-			enemy_instance = enemy.instantiate()
-			enemy_instance.position.x = randi_range(120, 600)
-			enemy_instance.position.y = i
-			add_child(enemy_instance)
+	_spawn_enemies()
+
+
+func _spawn_enemies() -> void:
+	var y: float = player.global_position.y - first_enemy_offset
+	var end_y: float = player.global_position.y - map_height
+
+	while y > end_y:
+		var enemy: Node2D = enemy_scene.instantiate() as Node2D
+		add_child(enemy)
+		enemy.global_position = Vector2(
+			randf_range(spawn_min_x, spawn_max_x),
+			y + randf_range(-spacing_jitter, spacing_jitter)
+		)
+		y -= enemy_spacing
 
 
 func _physics_process(_delta: float) -> void:
